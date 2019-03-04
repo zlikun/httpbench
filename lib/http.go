@@ -3,6 +3,7 @@ package lib
 import (
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -39,7 +40,7 @@ func DoRequest(method, url, params string, headers *map[string]string) (string, 
 	defer resp.Body.Close()
 
 	// 响应状态码
-	status := strings.Split(resp.Status, " ")[0]
+	status := strconv.Itoa(resp.StatusCode)
 
 	// 读取响应
 	if data, err := ioutil.ReadAll(resp.Body); err != nil {
